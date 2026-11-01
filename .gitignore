@@ -1,0 +1,18 @@
+# ROS 2 Build Artifacts
+build/
+install/
+log/
+_legacy_build/
+_legacy_install/
+_legacy_log/
+
+# Pixi environment
+.pixi/
+
+# Python cache & artifacts
+__pycache__/
+*.pyc
+.mypy_cache/
+
+# IDE database files
+.vscode/browse.vc.db
