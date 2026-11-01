@@ -109,8 +109,10 @@ Custom build helper commands available inside `pixi shell`:
 ## Running the Simulation
 
 ### Launch Robot Simulation in Gazebo Harmonic
+In the first terminal:
 ```bash
-pixi run ros2 launch gizmo_gazebo gazebo_simpleWorld.launch.py
+pixi shell
+ros2 launch gizmo_gazebo gazebo_simpleWorld.launch.py
 ```
 
 ### Launch RViz2 Model Visualizer
@@ -120,11 +122,11 @@ pixi shell
 rviz2 -d install/gizmo_gazebo/share/gizmo_gazebo/rviz/gazebo.rviz
 ```
 
-### Keyboard Teleoperation
+### Teleoperation
 In a third terminal:
 ```bash
 pixi shell
-ros2 run gizmo_teleop teleop_node
+ros2 launch gizmo_teleop teleop.launch.py
 ```
 
 ---
