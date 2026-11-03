@@ -61,14 +61,45 @@ def generate_launch_description():
     )
     use_imu = LaunchConfiguration('use_imu')
 
+    launch_arg_spawn_x = DeclareLaunchArgument(
+        'spawn_x',
+        default_value='0.0',
+        description='Initial x spawn coordinate of the robot in meters'
+    )
+    spawn_x = LaunchConfiguration('spawn_x')
+
+    launch_arg_spawn_y = DeclareLaunchArgument(
+        'spawn_y',
+        default_value='0.0',
+        description='Initial y spawn coordinate of the robot in meters'
+    )
+    spawn_y = LaunchConfiguration('spawn_y')
+
+    launch_arg_spawn_z = DeclareLaunchArgument(
+        'spawn_z',
+        default_value='0.1',
+        description='Initial z spawn coordinate of the robot in meters'
+    )
+    spawn_z = LaunchConfiguration('spawn_z')
+
+    launch_arg_spawn_yaw = DeclareLaunchArgument(
+        'spawn_yaw',
+        default_value='0.0',
+        description='Initial yaw orientation of the robot in radians'
+    )
+    spawn_yaw = LaunchConfiguration('spawn_yaw')
+
     gizmo_parent_dir = os.path.dirname(gizmo_description_dir)
+    models_dir = os.path.join(gizmo_gazebo_dir, 'models')
 
     env_gz_resource_path = SetEnvironmentVariable(
         name='GZ_SIM_RESOURCE_PATH',
         value=[
             os.environ.get('GZ_SIM_RESOURCE_PATH', ''),
             os.pathsep,
-            gizmo_parent_dir
+            gizmo_parent_dir,
+            os.pathsep,
+            models_dir
         ]
     )
 
@@ -131,9 +162,10 @@ def generate_launch_description():
         executable='create',
         arguments=[
             '-name', 'gizmo',
-            '-x', '0.0',
-            '-y', '0.0',
-            '-z', '0.1',
+            '-x', spawn_x,
+            '-y', spawn_y,
+            '-z', spawn_z,
+            '-Y', spawn_yaw,
             '-topic', 'robot_description',
             '-world', 'empty'
         ],
@@ -164,6 +196,10 @@ def generate_launch_description():
         launch_arg_use_lidar,
         launch_arg_use_camera,
         launch_arg_use_imu,
+        launch_arg_spawn_x,
+        launch_arg_spawn_y,
+        launch_arg_spawn_z,
+        launch_arg_spawn_yaw,
         env_gz_resource_path,
         robot_state_publisher,
         gazebo_clock_bridge,
