@@ -20,6 +20,7 @@ def generate_launch_description():
         launch_arguments={
             'world_file': line_world_path,
             'use_camera': 'true',
+            'use_lidar': 'false',
             'run_rviz2': 'false',
             'spawn_x': '2.0',
             'spawn_y': '0.0',
