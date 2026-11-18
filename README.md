@@ -4,6 +4,62 @@ A reproducible, fully isolated ROS 2 and Gazebo Harmonic simulation template for
 
 ---
 
+## Quickstart Guide
+
+### 1. Prerequisites
+Install Pixi on Linux or WSL2 (Ubuntu 24.04 or 26.04 recommended):
+```bash
+curl -fsSL https://pixi.sh/install.sh | bash
+```
+
+### 2. Workspace Initialization
+Clone this repository and install the isolated RoboStack environment:
+```bash
+git clone https://github.com/CoreBotics-Lab/gizmo_2wd_template.git
+cd gizmo_2wd_template
+pixi install
+```
+
+### 3. Entering the Shell and Building
+Enter the isolated shell where ROS 2 variables, CycloneDDS, and custom build aliases are automatically sourced:
+```bash
+pixi shell
+build
+```
+
+Custom build helper commands available inside `pixi shell`:
+* `build` - Incremental build across all workspace packages with symlink-install.
+* `build <package_name>` - Build a single package with auto-completion.
+* `debug <package_name>` - Build with `RelWithDebInfo` for GDB debugging.
+* `clean all` - Remove `build/`, `install/`, and `log/` directories cleanly.
+
+---
+
+## Running the Simulation
+
+### Launch Robot Simulation in Gazebo Harmonic
+In the first terminal:
+```bash
+pixi shell
+ros2 launch gizmo_gazebo gazebo_simpleWorld.launch.py
+```
+
+### Launch RViz2 Model Visualizer
+In a second terminal:
+```bash
+pixi shell
+rviz2 -d install/gizmo_gazebo/share/gizmo_gazebo/rviz/gazebo.rviz
+```
+
+### Teleoperation
+In a third terminal:
+```bash
+pixi shell
+ros2 launch gizmo_teleop teleop.launch.py
+```
+
+---
+
 ## Architectural Overview
 
 This template provides the canonical kinematic, sensor, and simulation baseline for the Gizmo AMR. It is designed to be cloned or instantiated as a GitHub template for research and development across autonomous navigation, computer vision, spatial perception, and fleet robotics.
@@ -72,62 +128,6 @@ This template provides the canonical kinematic, sensor, and simulation baseline 
 | `/camera/camera_info` | `sensor_msgs/msg/CameraInfo` | GZ $\to$ ROS | RealSense D435 intrinsic matrix |
 | `/camera/depth/image_raw`| `sensor_msgs/msg/Image` | GZ $\to$ ROS | RealSense depth sensor |
 | `/imu/data` | `sensor_msgs/msg/Imu` | GZ $\to$ ROS | IMU sensor plugin |
-
----
-
-## Quickstart Guide
-
-### 1. Prerequisites
-Install Pixi on Linux or WSL2 (Ubuntu 24.04 or 26.04 recommended):
-```bash
-curl -fsSL https://pixi.sh/install.sh | bash
-```
-
-### 2. Workspace Initialization
-Clone this repository and install the isolated RoboStack environment:
-```bash
-git clone https://github.com/CoreBotics-Lab/gizmo_2wd_template.git
-cd gizmo_2wd_template
-pixi install
-```
-
-### 3. Entering the Shell and Building
-Enter the isolated shell where ROS 2 variables, CycloneDDS, and custom build aliases are automatically sourced:
-```bash
-pixi shell
-build
-```
-
-Custom build helper commands available inside `pixi shell`:
-* `build` - Incremental build across all workspace packages with symlink-install.
-* `build <package_name>` - Build a single package with auto-completion.
-* `debug <package_name>` - Build with `RelWithDebInfo` for GDB debugging.
-* `clean all` - Remove `build/`, `install/`, and `log/` directories cleanly.
-
----
-
-## Running the Simulation
-
-### Launch Robot Simulation in Gazebo Harmonic
-In the first terminal:
-```bash
-pixi shell
-ros2 launch gizmo_gazebo gazebo_simpleWorld.launch.py
-```
-
-### Launch RViz2 Model Visualizer
-In a second terminal:
-```bash
-pixi shell
-rviz2 -d install/gizmo_gazebo/share/gizmo_gazebo/rviz/gazebo.rviz
-```
-
-### Teleoperation
-In a third terminal:
-```bash
-pixi shell
-ros2 launch gizmo_teleop teleop.launch.py
-```
 
 ---
 
