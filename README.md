@@ -96,7 +96,7 @@ This template provides the canonical kinematic, sensor, and simulation baseline 
 
 | Parameter | Specification | URDF Definition |
 | :--- | :--- | :--- |
-| **Drive Architecture** | 2-Wheel Differential Drive with Dual Passive Casters | `gizmo_description/urdf/include/robot_components/` |
+| **Drive Architecture** | 2-Wheel Differential Drive with a Passive Casters | `gizmo_description/urdf/include/robot_components/` |
 | **Wheel Diameter** | $70\,\text{mm}$ ($r = 0.035\,\text{m}$) | `wheel_left.xacro`, `wheel_right.xacro` |
 | **Wheel Track Separation** | $0.160\,\text{m}$ | `gizmo_mobile_base.xacro` |
 | **Primary Vision Sensor** | Intel RealSense D435 RGB/Depth Camera | `camera.xacro`, `camera.gazebo.xacro` |
